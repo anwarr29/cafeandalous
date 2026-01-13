@@ -1,220 +1,269 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Café / Thé - The Wolf</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Food - Café Andalous</title>
 
-    <!-- Polices -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
 
-    <style>
-         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    body {
+      background: #E9DDCF;
+      color: #3d2c1b;
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      padding-bottom: 140px;
+    }
 
-        body {
-            background-color: #E9DDCF;
-            color: #3d2c1b;
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    .logo-container {
+      text-align: center;
+      padding: 20px 16px 40px;
+    }
+    .logo-container img {
+      width: 300px;
+      max-width: 82vw;
+      height: auto;
+      border-radius: 50%;
+      border: 4px solid #5F3C13;
+      box-shadow: 0 6px 20px rgba(95,60,19,0.25);
+    }
 
-        /* Logo + Paragraphe */
-        .logo-container {
-            text-align: center;
-            padding: 10px 20px 40px;
-            background-color: #E9DDCF;
-        }
+    .category-title {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      font-size: 2.4rem;
+      color: #5F3C13;
+      margin: 40px 0 30px;
+      position: relative;
+    }
+    .category-title::after {
+      content: '';
+      display: block;
+      width: 90px;
+      height: 3px;
+      background: #5F3C13;
+      margin: 12px auto 0;
+      opacity: 0.7;
+    }
 
-        .logo-container img {
-            width: 380px;
-            max-width: 90vw;
-            height: auto;
-            border-radius: 50%;
-            border: none;
-            animation: logoSimpleAppear 1.6s ease-out forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
+    .cafe-menu {
+      max-width: 980px;
+      margin: 0 auto 100px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
+    }
 
-        @keyframes logoSimpleAppear {
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .cafe-item {
+      background: white;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      gap: 16px;
+      box-shadow: 0 5px 18px rgba(95,60,19,0.14);
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .cafe-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(95,60,19,0.22);
+    }
 
-        .logo-subtitle {
-            max-width: 900px;
-            margin: 30px auto 0;
-            padding: 0 20px;
-            font-size: 1.25rem;
-            font-weight: 300;
-            line-height: 1.6;
-            color: #5F3C13;
-            text-align: center;
-            opacity: 0;
-            animation: fadeInSubtitle 1.4s ease-out 0.8s forwards;
-        }
+    .cafe-item-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #5F3C13;
+      flex-shrink: 0;
+    }
 
-        @keyframes fadeInSubtitle {
-            to { opacity: 0.95; }
-        }
+    .cafe-details { flex:1; }
+    .cafe-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #3d2c1b;
+    }
+    .cafe-price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #5F3C13;
+      margin: 6px 0 8px;
+    }
 
-        /* Titre catégorie - petit */
-        .category-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: #5F3C13;
-            margin: 20px 0 45px;
-            position: relative;
-            letter-spacing: 1px;
-        }
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .quantity-controls button {
+      width: 38px; height: 38px;
+      border: none; border-radius: 50%;
+      background: #5F3C13; color: white;
+      font-size: 1.4rem; font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .quantity-controls button:hover { background: #7a5123; }
+    .quantity-controls button:active { transform: scale(0.92); }
+    .quantity-controls span {
+      min-width: 34px;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
 
-        .category-title::after {
-            content: '';
-            display: block;
-            width: 110px;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #5F3C13, transparent);
-            margin: 12px auto 0;
-            border-radius: 2px;
-        }
+    #cart-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #f8f1e7;
+      border-top: 4px solid #5F3C13;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
 
-        /* Hero image - PLUS PETIT */
-        .hero-image-container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto 50px;
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            background: white;
-            border: 3px solid #5F3C13;
-            box-shadow: 0 4px 12px rgba(95, 60, 19, 0.15);
-        }
+    #cart-total {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #3d2c1b;
+      white-space: nowrap;
+    }
 
-        .hero-image-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 16px;
-            background: linear-gradient(to bottom, rgba(95, 60, 19, 0.03), rgba(95, 60, 19, 0.1));
-            z-index: 1;
-            opacity: 0.6;
-        }
+    #table-number {
+      width: 90px;
+      padding: 10px;
+      text-align: center;
+      border: 2px solid #5F3C13;
+      border-radius: 10px;
+      font-size: 1.15rem;
+    }
 
-        .hero-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            display: block;
-        }
+    #order-btn {
+      background: linear-gradient(90deg, #5F3C13, #8a6235);
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    #order-btn:hover {
+      background: linear-gradient(90deg, #4a2f0f, #5F3C13);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(95,60,19,0.35);
+    }
+    #order-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
 
-        /* Menu compact */
-        .cafe-menu {
-            max-width: 950px;
-            margin: 0 auto 80px;
-            padding: 0 18px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 22px;
-        }
+    /* Modal confirmation */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(61,44,27,0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
 
-        .cafe-item {
-            background: linear-gradient(145deg, #ffffff, #f0e6da);
-            border-radius: 18px;
-            padding: 14px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            box-shadow: 0 5px 16px rgba(95, 60, 19, 0.1);
-            opacity: 0;
-            transform: translateY(25px);
-            animation: fadeInUp 0.7s ease forwards;
-            line-height: 1.2;
-        }
+    .confirmation-modal {
+      background: white;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 440px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+      transform: scale(0.75);
+      opacity: 0;
+      transition: all 0.45s cubic-bezier(0.34,1.56,0.64,1);
+    }
 
-        .cafe-item:nth-child(odd) { animation-delay: 0.15s; }
-        .cafe-item:nth-child(even) { animation-delay: 0.3s; }
+    .confirmation-modal.show {
+      transform: scale(1);
+      opacity: 1;
+    }
 
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .check-circle {
+      font-size: 5rem;
+      color: #2e7d32;
+      margin-bottom: 24px;
+      animation: checkPulse 1.6s ease-in-out;
+    }
 
-        .cafe-item-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #5F3C13;
-            box-shadow: 0 5px 14px rgba(95, 60, 19, 0.25);
-            flex-shrink: 0;
-        }
+    @keyframes checkPulse {
+      0%   { transform: scale(0.5); opacity: 0; }
+      50%  { transform: scale(1.15); }
+      100% { transform: scale(1); opacity: 1; }
+    }
 
-        .cafe-details {
-            flex: 1;
-            gap: 6px;
-            display: flex;
-            flex-direction: column;
-        }
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #3d2c1b;
+      margin-bottom: 16px;
+    }
 
-        .cafe-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .modal-message {
+      font-size: 1.1rem;
+      color: #5f3c13;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
 
-        .cafe-header i {
-            font-size: 1.4rem;
-            color: #5F3C13;
-        }
+    .modal-info {
+      font-weight: 500;
+      color: #7a5123;
+      margin-bottom: 32px;
+      font-size: 1.05rem;
+    }
 
-        .cafe-name {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: #3d2c1b;
-            font-family: 'Playfair Display', serif;
-        }
+    .close-btn {
+      background: #5F3C13;
+      color: white;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .close-btn:hover {
+      background: #7a5123;
+      transform: translateY(-3px);
+    }
 
-        .cafe-price {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #5F3C13;
-        }
-
-        /* Bouton retour */
-        .back-button-container {
-            text-align: center;
-            margin: 70px 0 90px;
-        }
-
-        .back-button {
-            display: inline-block;
-            background: linear-gradient(to right, #5F3C13, #7a5123);
-            color: white;
-            padding: 10px 45px;
-            border-radius: 60px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 10px 25px rgba(95, 60, 19, 0.3);
-            transition: all 0.4s ease;
-            letter-spacing: 1px;
-        }
-
-        .back-button:hover, .back-button:active {
-            background: linear-gradient(to right, #4a2f0f, #5F3C13);
-            transform: translateY(-6px);
-            box-shadow: 0 16px 35px rgba(95, 60, 19, 0.4);
-        }
-
-     .site-footer {
+    @media (max-width: 520px) {
+      .category-title { font-size: 2rem; margin: 30px 0; }
+      .cafe-item-img { width: 70px; height: 70px; }
+      .cafe-name { font-size: 1.3rem; }
+      .cafe-price { font-size: 1.45rem; }
+      #cart-bar { flex-direction: column; padding: 16px; gap: 14px; }
+      #order-btn { width: 100%; padding: 14px; }
+      .confirmation-modal { padding: 28px 20px; }
+      .check-circle { font-size: 4.2rem; }
+      .modal-title { font-size: 1.75rem; }
+    }
+      .site-footer {
             background-color: #3d2c1b;
             color: #fdfaf5;
             padding: 80px 20px 60px;
@@ -286,276 +335,286 @@
             margin-top: 20px;
             font-weight: 500;
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .category-title { font-size: 2.5rem; margin: 18px 0 40px; }
-            .hero-image { height: 150px; }
-            .hero-image-container { border-width: 3px; border-radius: 14px; margin-bottom: 45px; }
-            .cafe-menu { gap: 20px; }
-            .cafe-item { padding: 12px; gap: 12px; }
-            .cafe-item-img { width: 65px; height: 65px; }
-            .cafe-name { font-size: 1.3rem; }
-            .cafe-price { font-size: 1.5rem; }
-            .logo-subtitle { font-size: 1.1rem; }
-        }
-
         @media (max-width: 480px) {
-            .category-title { font-size: 2.2rem; }
-            .hero-image { height: 140px; }
-            .hero-image-container { border-width: 2px; border-radius: 12px; margin-bottom: 40px; }
-            .cafe-item-img { width: 60px; height: 60px; }
-            .cafe-name { font-size: 1.25rem; }
-            .cafe-price { font-size: 1.45rem; }
-            .logo-subtitle { font-size: 1.05rem; }
-        }
 
-        @media (max-width: 360px) {
-            .category-title { font-size: 2rem; }
-            .hero-image { height: 130px; }
-            .cafe-item-img { width: 55px; height: 55px; }
-            .cafe-name { font-size: 1.2rem; }
-            .cafe-price { font-size: 1.4rem; }
-            .logo-subtitle { font-size: 1rem; }
-        }
-        @media (max-width: 430px) {
+    .logo-container img {
+        width: 180px;
+    }
 
-  body {
-    font-size: 14px;
-  }
+    .category-title {
+        font-size: 2.1rem;
+        margin: 15px 0 35px;
+    }
 
-  .logo-container img {
-    width: 260px;
-  }
+    .hero-image {
+        height: 110px;
+    }
 
-  .category-title {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-  }
+    .cafe-menu {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 10px;
+    }
 
-  .hero-image {
-    height: 120px;
-  }
+    .cafe-item {
+        padding: 12px;
+        gap: 12px;
+    }
 
-  .cafe-menu {
-    gap: 16px;
-  }
+    .cafe-item img {
+        width: 60px;
+        height: 60px;
+    }
 
-  .cafe-item {
-    padding: 10px;
-    border-radius: 14px;
-  }
+    .cafe-name {
+        font-size: 1.2rem;
+    }
 
-  .cafe-item-img {
-    width: 50px;
-    height: 50px;
-    border-width: 3px;
-  }
+    .cafe-sizes {
+        font-size: 1rem;
+    }
 
-  .cafe-name {
-    font-size: 1.05rem;
-  }
+    .nav-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px;
+        font-size: 1.05rem;
+    }
 
-  .cafe-price {
-    font-size: 1.25rem;
-  }
+    .footer-text {
+        font-size: 1.05rem;
+    }
 
-  .back-button {
-    font-size: 1.1rem;
-    padding: 8px 30px;
-  }
+    .footer-phone a {
+        font-size: 1.5rem;
+    }
+
+    .social-links a {
+        font-size: 2rem;
+    }
 }
-    </style>
+  </style>
 </head>
 <body>
 
-    <div class="logo-container">
-        <img src="image/andalons.png" alt="The Wolf">
+  <div class="logo-container">
+    <img src="image/andalons.png" alt="Café Andalous">
+  </div>
 
-        <!-- Petit paragraphe sous le logo -->
-        <p class="logo-subtitle">
-            Bienvenue chez Andalous, votre refuge cosy où les arômes authentiques du café et du thé se mêlent à une ambiance chaleureuse et conviviale. Détendez-vous et savourez l’instant.
-        </p>
+  <h1 class="category-title">Food</h1>
+
+  <div class="cafe-menu">
+
+    <!-- Frikassés & Soufflés -->
+    <div class="cafe-item" data-price="6">
+      <img src="image/frikasse.png" alt="Frikassé" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Frikassé</div>
+        <div class="cafe-price">6 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
     </div>
 
-    <h1 class="category-title">Food</h1>
-
-    <div class="hero-image-container">
-        <img src="image/fooood.jpg" alt="Café et Thé" class="hero-image">
+    <div class="cafe-item" data-price="10">
+      <img src="image/soufflé jambe fromage.png" alt="Soufflé Jambon Fromage" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Soufflé Jambon & Fromage</div>
+        <div class="cafe-price">10 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
     </div>
 
-    <div class="cafe-menu">
-
-        <!-- Café -->
-        <div class="cafe-item">
-            <img src="image/frikasse.png" alt="Café Direct" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-coffee"></i>
-                    <div class="cafe-name">Frikassé </div>
-                </div>
-                <div class="cafe-price">6 DT</div>
-            </div>
+    <div class="cafe-item" data-price="10">
+      <img src="image/soufle eja thone.png" alt="Soufflé Ejja Thon" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Soufflé Ejja Thon</div>
+        <div class="cafe-price">10 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
         </div>
-
-        <div class="cafe-item">
-            <img src="image/soufflé jambe fromage.png" alt="Express" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-mug-hot"></i>
-                    <div class="cafe-name">Soufflé Jambon & Fromage </div>
-                </div>
-                <div class="cafe-price">10 DT</div>
-            </div>
-        </div>
-        <div class="cafe-item">
-            <img src="image/soufle eja thone.png" alt="Express" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-mug-hot"></i>
-                    <div class="cafe-name">Soufflé ejja Thon </div>
-                </div>
-                <div class="cafe-price">10 DT</div>
-            </div>
-        </div>
-        <h1 class="category-title">Croissants Salés & Sucrés</h1>
-
-        <div class="cafe-item">
-            <img src="image/croissant salé jambon.png" alt="Capucin" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-coffee"></i>
-                    <div class="cafe-name">Croissant Salé Jambon </div>
-                </div>
-                <div class="cafe-price">9 DT</div>
-            </div>
-        </div>
-
-        <div class="cafe-item">
-            <img src="image/croissant fromage.png" alt="Café Américain" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-mug-hot"></i>
-                    <div class="cafe-name">Croissant Fromage</div>
-                </div>
-                <div class="cafe-price">9 DT</div>
-            </div>
-        </div>
-
-        <div class="cafe-item">
-            <img src="image/croissant chocolat.png" alt="Chocolat au Lait" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-mug-hot"></i>
-                    <div class="cafe-name">Croissant Chocolat</div>
-                </div>
-                <div class="cafe-price">6 DT</div>
-            </div>
-        </div>
-
-        <div class="cafe-item">
-            <img src="image/croissant amaande.png" alt="Chocolat Chaud" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-mug-hot"></i>
-                    <div class="cafe-name">Croissant Amande</div>
-                </div>
-                <div class="cafe-price">6 DT</div>
-            </div>
-        </div>
-
-        <div class="cafe-item">
-            <img src="image/croissant shnek.png" alt="Café Illy" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-coffee"></i>
-                    <div class="cafe-name">Croissant shnek</div>
-                </div>
-                <div class="cafe-price">6 DT</div>
-            </div>
-        </div>
-        <h1 class="category-title">Pizza</h1>
-
-        <div class="cafe-item">
-            <img src="image/pizza.png" alt="Café Capsule" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-coffee"></i>
-                    <div class="cafe-name">Pizza</div>
-                </div>
-                <div class="cafe-price">10 DT</div>
-            </div>
-        </div>
-        <h1 class="category-title">Baguettes Farcies</h1>
-          <div class="cafe-item">
-            <img src="image/Baguette Farcie Fromage & Escalope.png" alt="Café Capsule" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-coffee"></i>
-                    <div class="cafe-name">Baguette Farcie Fromage & Escalope</div>
-                </div>
-                <div class="cafe-price">10 DT</div>
-            </div>
-        </div>
-        <div class="cafe-item">
-            <img src="image/Baguette Farcie Thon, Jambon & Fromage.png" alt="Café Capsule" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-coffee"></i>
-                    <div class="cafe-name">Baguette Farcie Thon, Jambon & Fromage</div>
-                </div>
-                <div class="cafe-price">10 DT</div>
-            </div>
-        </div>
-         
-        <h1 class="category-title">Sandwichs Classiques</h1>
-
-        <div class="cafe-item">
-            <img src="image/Sandwich Thon.png" alt="Café Turc" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-mug-hot"></i>
-                    <div class="cafe-name">Sandwich Thon</div>
-                </div>
-                <div class="cafe-price">12 DT</div>
-            </div>
-        </div>
-        <div class="cafe-item">
-            <img src="image/Sandwich Jambon.png" alt="Café Turc" class="cafe-item-img">
-            <div class="cafe-details">
-                <div class="cafe-header">
-                    <i class="fas fa-mug-hot"></i>
-                    <div class="cafe-name">Sandwich Jambon</div>
-                </div>
-                <div class="cafe-price">12 DT</div>
-            </div>
-        </div>
-
-
+      </div>
     </div>
 
-    <div class="back-button-container">
-        <a href="index.html" class="back-button">
-            <i class="fas fa-arrow-left"></i>
-            <span>Retour au Menu</span>
-        </a>
+    <h2 class="category-title">Croissants Salés & Sucrés</h2>
+
+    <div class="cafe-item" data-price="9">
+      <img src="image/croissant salé jambon.png" alt="Croissant Jambon" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Croissant Salé Jambon</div>
+        <div class="cafe-price">9 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
     </div>
 
-    <footer class="site-footer">
+    <div class="cafe-item" data-price="9">
+      <img src="image/croissant fromage.png" alt="Croissant Fromage" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Croissant Fromage</div>
+        <div class="cafe-price">9 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cafe-item" data-price="6">
+      <img src="image/croissant chocolat.png" alt="Croissant Chocolat" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Croissant Chocolat</div>
+        <div class="cafe-price">6 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cafe-item" data-price="6">
+      <img src="image/croissant amaande.png" alt="Croissant Amande" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Croissant Amande</div>
+        <div class="cafe-price">6 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cafe-item" data-price="6">
+      <img src="image/croissant shnek.png" alt="Croissant Shnek" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Croissant Shnek</div>
+        <div class="cafe-price">6 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="category-title">Pizza</h2>
+
+    <div class="cafe-item" data-price="10">
+      <img src="image/pizza.png" alt="Pizza" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Pizza</div>
+        <div class="cafe-price">10 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="category-title">Baguettes Farcies</h2>
+
+    <div class="cafe-item" data-price="10">
+      <img src="image/Baguette Farcie Fromage & Escalope.png" alt="Baguette Fromage Escalope" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Baguette Fromage & Escalope</div>
+        <div class="cafe-price">10 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cafe-item" data-price="10">
+      <img src="image/Baguette Farcie Thon, Jambon & Fromage.png" alt="Baguette Thon Jambon Fromage" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Baguette Thon, Jambon & Fromage</div>
+        <div class="cafe-price">10 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="category-title">Sandwichs Classiques</h2>
+
+    <div class="cafe-item" data-price="12">
+      <img src="image/Sandwich Thon.png" alt="Sandwich Thon" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Sandwich Thon</div>
+        <div class="cafe-price">12 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cafe-item" data-price="12">
+      <img src="image/Sandwich Jambon.png" alt="Sandwich Jambon" class="cafe-item-img">
+      <div class="cafe-details">
+        <div class="cafe-name">Sandwich Jambon</div>
+        <div class="cafe-price">12 DT</div>
+        <div class="quantity-controls">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Barre de commande fixe -->
+  <div id="cart-bar">
+    <span id="cart-total">Total : 0 DT</span>
+    <input type="number" id="table-number" placeholder="Table" min="1"/>
+    <button id="order-btn">Commander via WhatsApp</button>
+  </div>
+
+  <!-- Modal de confirmation -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="confirmation-modal" id="modalContent">
+      <i class="fas fa-check-circle check-circle"></i>
+      <h3 class="modal-title">Commande envoyée !</h3>
+      <p class="modal-message">Merci pour votre commande.<br>Nous la préparons avec soin.</p>
+      <p class="modal-info" id="modalInfoLine"></p>
+      <button class="close-btn" id="closeModal">Fermer</button>
+    </div>
+  </div>
+  <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-text">
                 Merci pour votre fidélité<br>
                 <span>Une expérience unique alliant saveurs authentiques et ambiance chaleureuse</span>
             </div>
-
             <div class="footer-phone">
                 <i class="fas fa-phone-alt"></i>
                 <div>
-                    <strong>55 989 195</strong>
+                    <strong>56615128</strong>
                 </div>
             </div>
-
-               <div class="social-links">
+            <div class="social-links">
                 <a href="https://www.facebook.com/profile.php?id=100063944715824" target="_blank" aria-label="Facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
@@ -563,13 +622,127 @@
                     <i class="fab fa-instagram"></i>
                 </a>
             </div>
-
             <div class="copyright">
-                © café Andalous Musée du Bardo
+                © Café Andalous Musée du Bardo
             </div>
         </div>
     </footer>
 
-</body>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const items        = document.querySelectorAll('.cafe-item');
+      const totalDisplay = document.getElementById('cart-total');
+      const tableInput   = document.getElementById('table-number');
+      const orderBtn     = document.getElementById('order-btn');
+      const modal        = document.getElementById('confirmModal');
+      const modalContent = document.getElementById('modalContent');
+      const closeBtn     = document.getElementById('closeModal');
+      const modalInfo    = document.getElementById('modalInfoLine');
 
+      function updateTotal() {
+        let sum = 0;
+        items.forEach(el => {
+          const qty = Number(el.querySelector('.qty').textContent);
+          sum += qty * Number(el.dataset.price);
+        });
+        totalDisplay.textContent = `Total : ${sum} DT`;
+      }
+
+      items.forEach(item => {
+        const minus = item.querySelector('.minus');
+        const plus  = item.querySelector('.plus');
+        const qtyEl = item.querySelector('.qty');
+
+        minus.addEventListener('click', () => {
+          let v = Number(qtyEl.textContent);
+          if (v > 0) {
+            qtyEl.textContent = v - 1;
+            updateTotal();
+          }
+        });
+
+        plus.addEventListener('click', () => {
+          let v = Number(qtyEl.textContent);
+          qtyEl.textContent = v + 1;
+          updateTotal();
+        });
+      });
+
+      closeBtn.addEventListener('click', () => {
+        modalContent.classList.remove('show');
+        setTimeout(() => {
+          modal.style.display = 'none';
+          orderBtn.disabled = false;
+        }, 450);
+      });
+
+      orderBtn.addEventListener('click', () => {
+        if (orderBtn.disabled) return;
+        orderBtn.disabled = true;
+
+        const table = tableInput.value.trim();
+        if (!table) {
+          alert("Merci d'indiquer le numéro de table");
+          orderBtn.disabled = false;
+          return;
+        }
+
+        let lines = [];
+        let total = 0;
+
+        items.forEach(item => {
+          const q = Number(item.querySelector('.qty').textContent);
+          if (q > 0) {
+            const name = item.querySelector('.cafe-name').textContent.trim();
+            const p    = Number(item.dataset.price);
+            lines.push(`• ${name} × ${q}   ${q*p} DT`);
+            total += q * p;
+          }
+        });
+
+        if (lines.length === 0) {
+          alert("Votre panier est vide !");
+          orderBtn.disabled = false;
+          return;
+        }
+
+        const heure = new Date().toLocaleTimeString('fr-TN', {hour:'2-digit', minute:'2-digit'});
+
+        const msg = 
+`📋 COMMANDE - Café Andalous
+Table : ${table}
+───────────────────────
+${lines.join('\n')}
+───────────────────────
+Total : ${total} DT
+Heure : ${heure}`;
+
+        const wa = `https://wa.me/21656615128?text=${encodeURIComponent(msg)}`;
+
+        // Modal
+        modalInfo.textContent = `Table ${table} • Total : ${total} DT`;
+        modal.style.display = 'flex';
+        setTimeout(() => modalContent.classList.add('show'), 80);
+
+        // Auto close
+        setTimeout(() => {
+          modalContent.classList.remove('show');
+          setTimeout(() => {
+            modal.style.display = 'none';
+            orderBtn.disabled = false;
+          }, 500);
+        }, 5000);
+
+        // Reset
+        setTimeout(() => {
+          items.forEach(el => el.querySelector('.qty').textContent = '0');
+          updateTotal();
+          tableInput.value = '';
+        }, 700);
+
+        window.open(wa, '_blank');
+      });
+    });
+  </script>
+</body>
 </html>
